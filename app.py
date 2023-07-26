@@ -98,6 +98,7 @@ card_row = dbc.Row(cards, className="mb-4")
 card_row = dbc.Row(cards, className="mb-4")
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 colors = {
     'background': '#111111',
