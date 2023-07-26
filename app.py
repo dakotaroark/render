@@ -10,7 +10,7 @@ from dash import dcc, html, Dash
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
-df_al_shab = pd.read_csv('al_shab.csv')
+df_al_shab = pd.read_csv('https://raw.githubusercontent.com/dakotaroark/render/main/al_shab.csv')
 target_types = pd.DataFrame(df_al_shab['targtype1_txt'].value_counts())
 target_types = target_types.reset_index()
 target_types1 = target_types.rename(columns = {'targtype1_txt': 'occurrences'})
