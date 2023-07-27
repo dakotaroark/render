@@ -154,9 +154,10 @@ def create_map():
 
     # Create the legend
     legend_html = '''
-        <div style="position: fixed; 
-                    bottom: 50px; left: 50px; width: 120px; height: 220px; 
-                    border:2px solid grey; z-index:9999; font-size:12px;
+        <div style="position: absolute; 
+                    top: 20px; right: 20px; width: 120px; 
+                    height: 220px; border:2px solid grey; 
+                    z-index:9999; font-size:12px;
                     background-color:white;
                     opacity: 0.8;
                     ">
