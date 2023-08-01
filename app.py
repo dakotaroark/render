@@ -10,6 +10,7 @@ from dash import dcc, html, Dash
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
+# Creating Dataframes
 df_al_shab = pd.read_csv('https://raw.githubusercontent.com/dakotaroark/render/main/al_shab.csv')
 target_types = pd.DataFrame(df_al_shab['targtype1_txt'].value_counts())
 target_types = target_types.reset_index()
@@ -23,6 +24,8 @@ colors = {
     'background': '#111111',
     'text': '#ffffff'
 }
+
+# Creating bar plots
 fig_attacktargets = fig = px.bar(target_breakdown, x = 'ncasualities', y = 'targtype1_txt', color = 'casualities_per_attack', hover_data = ['occurrences'], 
 labels = {'targtype1_txt': 'Target Type', 'ncasualities': 'Number of Casualities', 'casualities_per_attack': 'Casualities Per Attack'})
 fig.update_layout(barmode = 'stack', yaxis ={'categoryorder': 'total descending'})
@@ -69,6 +72,7 @@ total_casualties = df_al_shab['ncasualities'].sum()
 total_attacks = len(df_al_shab)
 weapon_type = df_al_shab['weaptype1_txt'].mode()[0]
 
+#Creating a function for cards
 def create_card(header, value, color):
     return dbc.Col(
         dbc.Card(
@@ -92,7 +96,7 @@ cards = [
     create_card("Most used Weapon Type", weapon_type, "purple")
 ]
 
-# Create the row of cards
+# Creating the row of cards
 card_row = dbc.Row(cards, className="mb-4")
 
 card_row = dbc.Row(cards, className="mb-4")
@@ -124,7 +128,7 @@ def create_map():
         else:
             return '#33cc33'
 
-    # Create a dictionary to map color values to corresponding labels for the legend
+    # A dictionary to map color values to corresponding labels for the legend
     legend_labels = {
         'High Casualties': '#ff0000',
         'Moderate to High Casualties': '#ffb84d',
@@ -152,7 +156,7 @@ def create_map():
             tooltip=tooltip_text
         ).add_to(my_map)
 
-    # Create the legend
+    # Legend
     legend_html = '''
         <div style="position: absolute; 
                     top: 20px; right: 20px; width: 120px; 
@@ -178,7 +182,7 @@ def create_map():
 
 
 
-# Define the layout
+# Main application layout
 app.layout = html.Div(
     style={'backgroundColor': colors['background']},
     children=[
@@ -283,6 +287,6 @@ app.layout = html.Div(
 )
 
 
-# Run the Dash application
+# Line to run the web application 
 if __name__ == "__main__":
     app.run_server(debug=True, use_reloader=False)
